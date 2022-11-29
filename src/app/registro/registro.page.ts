@@ -12,7 +12,14 @@ export class RegistroPage implements OnInit {
 
   formCadastro: FormGroup;
 
-  constructor(private alertController: AlertController, private formBuilder: FormBuilder) { }
+  constructor(private alertController: AlertController, private formBuilder: FormBuilder) { 
+    this.formCadastro = this.formBuilder.group({
+      nome: ['', Validators.required],
+      descricao: ['', Validators.compose([Validators.required, Validators.minLength(100)])],
+      validade: ['',Validators.compose([Validators.required,Validators.minLength(6)])],
+      preco: ['',Validators.required],
+    });
+  }
 
 
 
