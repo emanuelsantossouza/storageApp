@@ -2,9 +2,13 @@
   <ion-toolbar>
     <ion-title>Registro</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content>
+  <form action="">
+
+  
     <ion-item>
       <img src="https://www.cdlcampos.org.br/images/noticias/7818_250319093953_capa4.png" alt="imagem de um produto">
     </ion-item>
@@ -40,10 +44,12 @@
 
     <ion-row>
       <ion-col>
-        <ion-button expand="block" color="light">Lista</ion-button>
+        <ion-button routerLink="/home" expand="block" color="light">Lista</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" color="danger">Entrar</ion-button>
+        <ion-button (click)="confirmar()" expand="block" color="danger">Confirma</ion-button>
       </ion-col>
     </ion-row>
+
+  </form>
 </ion-content>
