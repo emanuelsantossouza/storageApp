@@ -6,9 +6,9 @@
 </ion-header>
 
 <ion-content>
-  <form action="">
+  <form [formGroup]="formCadastro">
 
-  
+
     <ion-item>
       <img src="https://www.cdlcampos.org.br/images/noticias/7818_250319093953_capa4.png" alt="imagem de um produto">
     </ion-item>
@@ -21,22 +21,45 @@
 
       <ion-item>
         <ion-label position="floating">Nome:</ion-label>
-        <ion-input placeholder="Digite um email valido"></ion-input>
+        <ion-input formControlName="nome" ></ion-input>
+          <ng-container *ngFor="let erro of mensagens.nome">
+            <span class="msg-erro" *ngIf="formCadastro.get('nome')?.hasError(erro.tipo) && (formCadastro.get('nome')?.dirty || formCadastro.get('nome')?.touched)">
+              {{erro.mensagem}}
+            </span>
+          </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Descrição:</ion-label>
-        <ion-input placeholder="Digite uma senha valida"></ion-input>
+        <ion-input formControlName="descricao"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.descricao">
+          <span class="msg-erro" *ngIf="formCadastro.get('descricao')?.hasError(erro.tipo) && (formCadastro.get('descricao')?.dirty || formCadastro.get('descricao')?.touched)">
+            {{erro.mensagem}}
+          </span>
+        </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Validade:</ion-label>
-        <ion-input type="date" placeholder="Digite uma senha valida"></ion-input>
+        <ion-input formControlName="validade"></ion-input>
+        <ng-container *ngFor="let erro of mensagens.validade">
+          <span class="msg-erro"
+            *ngIf="formCadastro.get('validade')?.hasError(erro.tipo) && (formCadastro.get('validade')?.dirty || formCadastro.get('validade')?.touched)">
+            {{erro.mensagem}}
+          </span>
+        </ng-container>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Preço:</ion-label>
-        <ion-input type="number" placeholder="Digite uma senha valida"></ion-input>
+        <ion-input formControlName="preco" type="number" ></ion-input>
+        <ng-container *ngFor="let erro of mensagens.preco">
+          <span class="msg-erro"
+            *ngIf="formCadastro.get('preco')?.hasError(erro.tipo) && (formCadastro.get('preco')?.dirty || formCadastro.get('preco')?.touched)">
+            {{erro.mensagem}}
+          </span>
+        </ng-container>
+
       </ion-item>
 
 
@@ -47,7 +70,7 @@
         <ion-button routerLink="/home" expand="block" color="light">Lista</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button (click)="confirmar()" expand="block" color="danger">Confirma</ion-button>
+        <ion-button (click)="salvarcadastro()" expand="block" color="danger">Salvar</ion-button>
       </ion-col>
     </ion-row>
 
